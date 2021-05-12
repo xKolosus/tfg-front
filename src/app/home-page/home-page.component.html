@@ -1,38 +1,168 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active" id="0">
-            <img src="../../assets/first.jpg" alt="First" class="image-resize">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Bienvenido a Bloggo!</h5>
-              <p>Esperamos que disfrutes leyendo todo tipo de artículos aqui</p>
-            </div>
+
+<div class="content mt-1">
+    <mdb-carousel class="carousel slide carousel-fade mb-4" [animation]="'fade'">
+        <mdb-carousel-item>
+          <div class="view w-100">
+            <img class="d-block w-100 image-resize" src="../../assets/first.jpg" alt="First slide">
+            <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
           </div>
-          <div class="carousel-item" id="1">
-            <img src="../../assets/second.jpg" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Aquí podras publicar todo tipo de artículos y añadir comentarios!</h5>
-              <p>...</p>
-            </div>
+          <div class="carousel-caption">
+            <h3 class="h3-responsive">Bienvenido a BLOGGO!</h3>
+            <p>Esperamos que disfrutes posteando en nuestro blog.</p>
           </div>
-          <div class="carousel-item" id="2">
-            <img src="../../assets/third.jpg" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>...</h5>
-              <p>...</p>
-            </div>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <div class="view w-100">
+            <img class="d-block w-100 image-resize" src="../../assets/second.jpg" alt="Second slide">
+            <div class="mask rgba-black-strong waves-light" mdbWavesEffect></div>
           </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+          <div class="carousel-caption">
+            <h3 class="h3-responsive">Aquí encontrarás todo tipo de posts y artículos.</h3>
+            <p>Es necesario que te registres para poder postear pero para ver no!</p>
+          </div>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <div class="view w-100">
+            <img class="d-block w-100 image-resize" src="../../assets/third.jpg" alt="Third slide">
+            <div class="mask rgba-black-slight waves-light" mdbWavesEffect></div>
+          </div>
+          <div class="carousel-caption">
+            <h3 class="h3-responsive">Cuentanos sobre tus videojuegos, series o películas favoritas!</h3>
+            <p>Todos estaremos encantados de tu review sobre lo que sea.</p>
+          </div>
+        </mdb-carousel-item>
+      </mdb-carousel>  
+</div>
+<div class="content--smaller mb-4">
+    <div class="row">
+        <div class="col-md-4">
+          <!--Card-->
+          <mdb-card cascade="true" wider="true">
+      
+            <!--Card image-->
+            <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+              <mdb-card-img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg"></mdb-card-img>
+              <a>
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!--/Card image-->
+      
+            <mdb-card-body cascade="true" class="text-center">
+              <!--Card content-->
+              <!--Title-->
+              <h4 class="card-title">
+                <strong>¿Quiénes somos?</strong>
+              </h4>
+              <h5 class="indigo-text">
+                <strong>Información personal</strong>
+              </h5>
+      
+              <mdb-card-text>
+                Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium, totam rem
+                aperiam.
+              </mdb-card-text>
+      
+              <!--Linkedin-->
+              <a class="px-2 icons-sm li-ic">
+                <mdb-icon fab icon="linkedin-in"> </mdb-icon>
+              </a>
+              <!--Twitter-->
+              <a class="px-2 icons-sm tw-ic">
+                <mdb-icon fab icon="twitter"> </mdb-icon>
+              </a>
+              <!--Dribbble-->
+              <a class="px-2 icons-sm fb-ic">
+                <mdb-icon fab icon="facebook-f"> </mdb-icon>
+              </a>
+      
+            </mdb-card-body>
+            <!--/.Card content-->
+      
+          </mdb-card>
+          <!--/.Card-->
+        </div>
+      
+        <div class="col-md-4">
+          <!--Card-->
+          <mdb-card cascade="true" narrower="true">
+      
+            <!--Card image-->
+            <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+              <mdb-card-img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg"></mdb-card-img>
+              <a>
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!--/Card image-->
+      
+            <mdb-card-body cascade="true" class="text-center">
+              <!--Card content-->
+              <h5 class="blue-text">
+                <mdb-icon fas icon="comments"></mdb-icon>¿A que esperas?</h5>
+              <!--Title-->
+              <h4 class="card-title">Vamos anímate!</h4>
+              <!--Text-->
+      
+              <mdb-card-text>
+                Registrate ya y comenta que te ha parecido esa película que has visto en el cine, 
+                o ese último juego, libro, etc... Coméntanoslo y crea un artículo sobre él!
+              </mdb-card-text>
+      
+              <a mdbBtn color="unique" class="waves-light" mdbWavesEffect>Registrate!</a>
+      
+            </mdb-card-body>
+            <!--/.Card content-->
+      
+          </mdb-card>
+          <!--/.Card-->
+        </div>
+      
+        <div class="col-md-4">
+          <!--Card-->
+          <mdb-card cascade="true">
+      
+            <!--Card image-->
+            <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+              <mdb-card-img src="../../assets/cosmin.jpg"></mdb-card-img>
+              <a>
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!--/Card image-->
+      
+            <mdb-card-body cascade="true" class="text-center">
+              <!--Card content-->
+              <h4 class="card-title">
+                <strong>Cosmin Constantin Chirila</strong>
+              </h4>
+              <h5>Web developer</h5>
+      
+              <mdb-card-text>
+                El principal desarrollador tanto del front-end como el back-end de esta página, todavía está aprendiendo pero ya sabemos
+                todos que como programador nunca se para de aprender!
+              </mdb-card-text>
+      
+              <!--Facebook-->
+              <a type="button" mdbBtn floating="true" size="lg" color="rd" class="waves-light" mdbWavesEffect href="https://www.reddit.com/user/xKolosus" target="_blank">
+                <mdb-icon fab icon="reddit"></mdb-icon>
+              </a>
+              <!--Twitter-->
+              <a type="button" mdbBtn floating="true" size="lg" color="tw" class="waves-light" mdbWavesEffect href="https://twitter.com/hxcxsmin" target="_blank">
+                <mdb-icon fab icon="twitter"></mdb-icon>
+              </a>
+              <!--Google +-->
+              <a type="button" mdbBtn floating="true" size="lg" color="ig" class="waves-light" mdbWavesEffect href="https://www.instagram.com/c0smiin" target="_blank">
+                <mdb-icon fab icon="instagram"></mdb-icon>
+              </a>
+      
+            </mdb-card-body>
+            <!--/.Card content-->
+      
+          </mdb-card>
+          <!--/.Card-->
+        </div>
+      </div>
   </div>
+  <app-footer></app-footer>
+
