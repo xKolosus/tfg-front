@@ -7,8 +7,8 @@ export interface ArticleVO {
     articleTitle : String,
     articleContent : String,
     createdAt : Date,
-    articleImgUrl : String,
+    articleImageUrl : String,
     category : CategoryVO,
     posts : PostVO[],
-    userId : UserVO
+    user : UserVO
 }

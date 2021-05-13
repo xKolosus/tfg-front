@@ -1,1 +1,52 @@
-<p>articles works!</p>
+<div class="content">
+<!-- Section: Blog v.3 -->
+<section class="my-5">
+
+  <!-- Section heading -->
+  <h2 class="h1-responsive font-weight-bold text-center my-5">Todos nuestros artículos</h2>
+  <!-- Section description -->
+  <p class="text-center dark-grey-text w-responsive mx-auto mb-5">Aquí encontrarás el conjunto de todos nuestros artículos sin categorizar!</p>
+
+  <!-- Grid row -->
+  <div class="row" *ngFor="let article of articles">
+
+    <!-- Grid column -->
+    <div class="col-lg-5 col-xl-4">
+
+      <!-- Featured image -->
+      <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4 waves-light" mdbWavesEffect>
+        <img class="img-fluid" src="{{article.articleImageUrl}}" alt="Sample image">
+        <a>
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-lg-7 col-xl-8">
+
+      <!-- Post title -->
+      <h3 class="font-weight-bold mb-3"><strong>{{article.articleTitle}}</strong></h3>
+      <!-- Excerpt -->
+      <p class="dark-grey-text">{{article.articleContent}}</p>
+      <!-- Post data -->
+      <p>by <a class="font-weight-bold">{{article.user.name}} {{article.user.surname}}</a>, {{parsedDate(article.createdAt)}} - Categoría ( <em>{{article.category.categoryName}}</em> )</p>
+      <!-- Read more button -->
+      <a mdbBtn color="primary" mdbWavesEffect routerLink="/articles/{{article.articleId}}">Ver artículo</a>
+
+    </div>
+    <!-- Grid column -->
+    <hr class="my-5">
+  </div>
+  <!-- Grid row -->
+
+
+
+
+
+</section>
+<!-- Section: Blog v.3 -->
+</div>
+<app-footer></app-footer>

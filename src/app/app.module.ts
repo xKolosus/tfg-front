@@ -11,6 +11,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FooterComponent } from './footer/footer.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticleInfoComponent } from './article-info/article-info.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import { ArticleInfoComponent } from './article-info/article-info.component';
     HomePageComponent,
     FooterComponent,
     ArticlesComponent,
-    ArticleInfoComponent
+    ArticleInfoComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,7 @@ import { ArticleInfoComponent } from './article-info/article-info.component';
     HttpClientModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

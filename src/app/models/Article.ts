@@ -7,7 +7,7 @@ export class Article {
     articleTitle: String;
     articleContent : String;
     createdAt : Date;
-    articleImgUrl : String = null;
+    articleImgUrl : String = "../../assets/default.jpg";
     category : Category;
     posts : Post[];
     user : User;
