@@ -1,6 +1,6 @@
-<div class="content">
+<div class="content" *ngIf="article">
 <!-- Jumbotron -->
-<div class="jumbotron p-0 mt-2" *ngIf="article">
+<div class="jumbotron p-0 mt-2" >
   <!-- Card image -->
   <div class="view overlay rounded-top waves-light" mdbWavesEffect>
     <img src="{{article.articleImageUrl}}" class="card-img-top" alt="Sample image">
@@ -16,7 +16,7 @@
     <!-- Text -->
     <p class="card-text py-2">{{article.articleContent}}</p>
     <!-- Button -->
-    <a mdbBtn gradient="purple" rounded="true" class="white-text mb-4" mdbWavesEffect>Button</a>
+    <a mdbBtn gradient="purple" rounded="true" class="white-text mb-4" mdbWavesEffect *ngIf="isHisArticle()" routerLink="/edit-article/{{article.articleId}}">Editar artículo</a>
 
 
   </div>
@@ -26,21 +26,65 @@
   <div class="row d-flex justify-content-center">
       <div class="col-md-8">
           <div class="headings d-flex justify-content-between align-items-center mb-3">
-              <h5>Posts para el articulo <em>{{article.articleTitle}}</em> ({{article.posts.length}})</h5>
+              <h5>Posts para el articulo <em>{{article.articleTitle}}</em> ({{article.posts.length}}) <button mdbBtn type="button" color="deep-orange" mdbWavesEffect *ngIf="isAuthenticated()" data-toggle="modal" data-target="#basicExample"
+                (click)="frame.show()" mdbWavesEffect>Añadir post</button></h5>
           </div>
-          <div class="card p-3" *ngFor="let post of article.posts">
+          <div class="card p-3 mb-2" *ngFor="let post of article.posts">
               <div class="d-flex justify-content-between align-items-center">
-                  <div class="user d-flex flex-row align-items-center"> <img src="{{post.user.profilePicUrl}}" width="30" class="user-img rounded-circle mr-2">
-                    <span><small class="font-weight-bold text-primary">{{post.user.name}} {{post.user.surname}}</small><br/>
-                      <small>{{post.postContent}}</small></span> </div>
-                      <small>{{parseTime(post.createdAt)}}</small>
+                  <div class="user d-flex flex-row align-items-center"> <img src="{{post.user.profilePicUrl}}" style="width: 50px; height: 50px;" class="user-img rounded-circle mr-2">
+                    <span><small class="font-weight-bold text-primary" style="font-size: 16px;">{{post.user.name}} {{post.user.surname}}</small><br/>
+                      <small style="font-size: 14px;">{{post.postContent}}</small></span>
+
+                     </div>
+                     <div class="btn-group-vertical">
+                      <small class="ml-5 mb-2">{{parseTime(post.createdAt)}}</small>
+                      <button class="btn btn-danger btn-sm" *ngIf="isHisPost(post)">Borrar mi comentario</button>
+                     </div>
               </div>
-              <div class="action d-flex justify-content-between mt-2 align-items-center">
-                  <mdb-icon icon="like"></mdb-icon>
+              <div class="pt-2">
+                <small class="mr-2"><mdb-icon far icon="thumbs-up" role="button" (click)="addLikeToPost(post)" *ngIf="isAuthenticated()"></mdb-icon><mdb-icon far icon="thumbs-up" *ngIf="!isAuthenticated()"></mdb-icon> {{post.postLikes}} Likes</small>
+                <small><mdb-icon far icon="thumbs-down" role="button" (click)="addDislikeToPost(post)" *ngIf="isAuthenticated()"></mdb-icon><mdb-icon far icon="thumbs-down" *ngIf="!isAuthenticated()"></mdb-icon> {{post.postDislikes}} Dislikes</small>
               </div>
           </div>
       </div>
   </div>
 </div>
 </div>
-<app-footer></app-footer>
+<!--MODAL-->
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Crea tu post!</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="tag" class="prefix grey-text"></mdb-icon>
+          <input type="text" id="form32" class="form-control" mdbInput mdbValidate
+                 [formControl]="contactFormModalSubject">
+          <label for="form32">Título del post</label>
+
+        </div>
+
+        <div class="md-form">
+          <mdb-icon fas icon="pencil-alt" class="prefix grey-text"></mdb-icon>
+          <textarea type="text" id="form8" class="md-textarea form-control" rows="1" mdbInput mdbValidate
+                    [formControl]="contactFormModalMessage"></textarea>
+          <label for="form8">Contenido del post</label>
+
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="onSubmit()">Enviar
+          <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

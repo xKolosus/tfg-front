@@ -1,10 +1,10 @@
-<div class="content mt-2">
+<div class="content mt-2 mb-4">
   <!-- Material form register -->
 <mdb-card>
 
   <mdb-card-header class="bg-dark white-text text-center py-4">
     <h5>
-      <strong>Sign up</strong>
+      <strong>Registro</strong>
     </h5>
   </mdb-card-header>
 
@@ -12,45 +12,55 @@
   <mdb-card-body class="px-lg-5 pt-0">
 
     <!-- Form -->
-    <form class="text-center" style="color: #757575;">
+    <form class="text-center" style="color: #757575;" [formGroup]="registerUser" (ngSubmit)="onSubmit()">
 
       <div class="form-row">
         <div class="col">
           <!-- First name -->
           <div class="md-form">
-            <input type="text" id="materialRegisterFormFirstName" class="form-control" mdbInput>
+            <input  formControlName="userName" type="text" id="materialRegisterFormFirstName" class="form-control" mdbInput>
             <label for="materialRegisterFormFirstName">Nombre</label>
+            <mdb-error *ngIf="userName.invalid && (userName.dirty || userName.touched)">Nombre incorrecto</mdb-error>
+            <mdb-success *ngIf="userName.valid && (userName.dirty || userName.touched)">Nombre correcto</mdb-success>
           </div>
         </div>
         <div class="col">
           <!-- Last name -->
           <div class="md-form">
-            <input type="email" id="materialRegisterFormLastName" class="form-control" mdbInput>
+            <input formControlName="userSurname" type="text" id="materialRegisterFormLastName" class="form-control" mdbInput>
             <label for="materialRegisterFormLastName">Apellidos</label>
+            <mdb-error *ngIf="userSurname.invalid && (userSurname.dirty || userSurname.touched)">Apellido incorrecto</mdb-error>
+            <mdb-success *ngIf="userSurname.valid && (userSurname.dirty || userSurname.touched)">Apellido correcto</mdb-success>
           </div>
         </div>
       </div>
 
       <!-- E-mail -->
       <div class="md-form mt-0">
-        <input type="email" id="materialRegisterFormEmail" class="form-control" mdbInput>
+        <input formControlName="userEmail" type="email" id="materialRegisterFormEmail" class="form-control" mdbInput>
         <label for="materialRegisterFormEmail">Correo electrónico</label>
+        <mdb-error *ngIf="userEmail.invalid && (userEmail.dirty || userEmail.touched)">Correo incorrecto</mdb-error>
+        <mdb-success *ngIf="userEmail.valid && (userEmail.dirty || userEmail.touched)">Correo correcto</mdb-success>
       </div>
 
       <!-- Password -->
       <div class="md-form">
-        <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"
-          mdbInput>
+        <input formControlName="userPassword" type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"
+          mdbInput required>
         <label for="materialRegisterFormPassword">Contraseña</label>
         <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
           Asegurate de que es una contraseña segura.
         </small>
+        <mdb-error *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)">Contraseña incorrecta</mdb-error>
+        <mdb-success *ngIf="userPassword.valid && (userPassword.dirty || userPassword.touched)">Contraseña correcta</mdb-success>
       </div>
-
+      <label class="form-label font-weight-bold" for="customFile">Imágen para el usuario</label><br>
+      <small>Si no se selecciona ninguna se pondra una imagen por defecto</small>
+      <input type="file" class="form-control" id="customFile" (input)="handleUpload($event)"/>
 
       <!-- Sign up button -->
       <button mdbBtn color="dark" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
-        type="submit">Registrarse</button>
+        type="submit" *ngIf="registerUser.controls['userName'].value != null && registerUser.controls['userSurname'].value && registerUser.controls['userEmail'].value && registerUser.controls['userPassword'].value.length >= 8">Registrarse</button>
 
 
 

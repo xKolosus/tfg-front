@@ -1,0 +1,32 @@
+<div class="content">
+  <!-- Default form contact -->
+<form class="text-center border border-light p-5 mt-4 mb-4" [formGroup]="newArticleForm" (ngSubmit)="onSubmit()">
+
+  <p class="h4 mb-4 font-weight-bold">Crea tu artículo</p>
+
+  <!-- Name -->
+  <input type="text" id="defaultContactFormName" formControlName="articleTitle" class="form-control mb-4" placeholder="Título del artículo">
+
+  <!-- Subject -->
+  <label class="font-weight-bold">Categoría del artículo</label>
+  <select class="browser-default custom-select mb-4" formControlName="articleCategory">
+    <option value="" disabled>Selecciona una categoría</option>
+    <option value="{{category.categoryId}}" *ngFor="let category of categories">{{category.categoryName}}</option>
+  </select>
+
+  <!-- Message -->
+  <div class="form-group">
+    <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" formControlName="articleContent" rows="8" placeholder="Contenido del artículo"></textarea>
+  </div>
+  <label class="form-label font-weight-bold" for="customFile">Imágen para el articulo</label><br>
+  <small>Si no se selecciona ninguna se pondra una imagen por defecto</small>
+  <input type="file" class="form-control" id="customFile" (input)="handleUpload($event)"/>
+
+
+  <!-- Send button -->
+  <button mdbBtn color="info" block="true" type="submit">Send</button>
+
+</form>
+<!-- Default form contact -->
+  </div>
+
