@@ -29,4 +29,8 @@ export class UserService {
   deleteUser(userId : Number){
     return this.http.delete<UserVO>(ApiPath.url + "/users/" + userId);
   }
+
+  countPostsByUserId(userId : Number){
+    return this.http.get<Number>(ApiPath.url + "/users/posts/count/" + userId);
+  }
 }

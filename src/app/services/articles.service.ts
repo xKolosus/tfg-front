@@ -35,4 +35,8 @@ export class ArticlesService {
     return this.http.post(ApiPath.url + "/articles/posts/"+articleId, post, { headers : { 'Authorization' : JSON.parse(window.sessionStorage.getItem("auth-user")).bearerToken}});
   }
 
+  deleteArticle(article : ArticleVO){
+    return this.http.delete(ApiPath.url + "/articles/" + article.articleId, { headers : { 'Authorization' : JSON.parse(window.sessionStorage.getItem("auth-user")).bearerToken}});
+  }
+
 }

@@ -17,4 +17,8 @@ export class PostService {
   addDislikeToPost(post : PostVO){
     return this.http.post(ApiPath.url + "/posts/" + post.postId + "/dislike", null);
   }
+
+  deletePost(post : PostVO){
+    return this.http.delete(ApiPath.url + "/posts/" + post.postId);
+  }
 }

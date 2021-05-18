@@ -45,9 +45,9 @@ export class CreateArticleComponent implements OnInit {
       });
   }
 
-  handleUpload(e : Event){
+  async handleUpload(e : Event){
     const input = e.target as HTMLInputElement;
-    this.imgbbService.upload(input.files[0]).subscribe(url => this.imageUrl = url);
+    await this.imgbbService.upload(input.files[0]).subscribe(url => this.imageUrl = url);
   }
 
   onSubmit(){

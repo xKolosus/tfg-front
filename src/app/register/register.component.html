@@ -60,7 +60,7 @@
 
       <!-- Sign up button -->
       <button mdbBtn color="dark" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
-        type="submit" *ngIf="registerUser.controls['userName'].value != null && registerUser.controls['userSurname'].value && registerUser.controls['userEmail'].value && registerUser.controls['userPassword'].value.length >= 8">Registrarse</button>
+        type="submit" *ngIf="user != null &&  (registerUser.controls['userName'].value != null && registerUser.controls['userSurname'].value && registerUser.controls['userEmail'].value && registerUser.controls['userPassword'].value.length >= 8)">Registrarse</button>
 
 
 

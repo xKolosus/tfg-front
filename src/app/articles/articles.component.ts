@@ -8,6 +8,7 @@ import { CategoryVO } from '../interfaces/CategoryVO';
 import { Category } from '../models/Category';
 import { ArticlesService } from '../services/articles.service';
 import { CategoriesService } from '../services/categories.service';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-articles',
@@ -16,7 +17,10 @@ import { CategoriesService } from '../services/categories.service';
 })
 export class ArticlesComponent implements OnInit {
 
-  constructor(private articleService : ArticlesService, private categoryService : CategoriesService, private datepipe : DatePipe) { }
+  constructor(private articleService : ArticlesService,
+  private categoryService : CategoriesService,
+  private datepipe : DatePipe,
+  private notificationService : NotificationService) { }
 
   ngOnInit(): void {
     this.getArticles();
@@ -57,6 +61,27 @@ export class ArticlesComponent implements OnInit {
       });
     }
 
+  }
+
+  isHisArticle(article : ArticleVO){
+    if(window.sessionStorage.getItem("auth-user") != null){
+      if(article.user.userId == JSON.parse(window.sessionStorage.getItem("auth-user")).userId){
+        return true;
+      }
+    }
+  }
+
+  deleteArticle(article : ArticleVO){
+    this.articleService.deleteArticle(article)
+      .subscribe(res => {
+        this.notificationService.showSuccess("Se ha borrado correctamente tu artículo!","Borrando artículo");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      },
+      err => {
+        this.notificationService.showError("Ha ocurrido un error borrando tu artículo","Error borrando artículo");
+      });
   }
 
 }

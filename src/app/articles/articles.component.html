@@ -38,16 +38,33 @@
       <p>by <a class="font-weight-bold">{{article.user.name}} {{article.user.surname}}</a>, {{parsedDate(article.createdAt)}} - Categoría ( <em>{{article.category.categoryName}}</em> )</p>
       <!-- Read more button -->
       <a mdbBtn color="primary" mdbWavesEffect routerLink="/articles/{{article.articleId}}">Ver artículo</a>
+      <a mdbBtn color="danger" *ngIf="isHisArticle(article)" (click)="basicModal.show()" mdbWavesEffect>Eliminar artículo</a>
+      <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">¿Estas seguro?</h4>
+            </div>
+            <div class="modal-body">
+              Esta opción eliminará tu artículo <br>
+              y todos sus posts.
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>No</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="deleteArticle(article)">Si</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
     <!-- Grid column -->
     <hr class="my-5">
   </div>
   <!-- Grid row -->
-
-
-
-
 
 </section>
 <section class="my-5" *ngIf="!articles">

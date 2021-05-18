@@ -71,7 +71,6 @@ export class ArticleInfoComponent implements OnInit {
         return true;
       }
     }
-
   }
 
   addLikeToPost(post : PostVO){
@@ -103,7 +102,7 @@ export class ArticleInfoComponent implements OnInit {
     this.articleService.addPostToArticle(this.post, this.article.articleId).subscribe(res => {
       this.notificationService.showSuccess("Se ha creado correctamente el comentario o post, esperé unos segundos y lo verá","Post creado correctamente.");
       setTimeout(() => {
-        this.ngOnInit();
+        window.location.reload();
       }, 1500);
     }, err => {
       this.notificationService.showError("No se ha creado el comentario o post, hubo un problema en el servidor.","Error en el servidor!");
@@ -119,7 +118,19 @@ export class ArticleInfoComponent implements OnInit {
         return false;
       }
     }
+  }
 
+  deletePost(post : PostVO){
+    this.postService.deletePost(post)
+      .subscribe(res => {
+        this.notificationService.showSuccess("Tu post se ha borrado correctamente!","Post eliminado");
+        setTimeout(()=>{
+          window.location.reload();
+        }, 1500);
+      },
+      err => {
+        this.notificationService.showError("Ha surgido un error con tu borrado de post.", "Error con borrado");
+        });
   }
 
 }

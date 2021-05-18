@@ -20,6 +20,7 @@ export class ProfileInfoComponent implements OnInit {
 
   profileData : FormGroup;
   user : UserVO;
+  postsByUser : Number;
 
   ngOnInit(): void {
     this.loadInfo();
@@ -38,7 +39,11 @@ export class ProfileInfoComponent implements OnInit {
         userName :  this.user.name,
         userSurname : this.user.surname,
         userEmail : this.user.email});
-    })
+    });
+    this.userService.countPostsByUserId(userId)
+      .subscribe((u) => {
+        this.postsByUser = u;
+      });
   };
 
 

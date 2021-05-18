@@ -38,7 +38,7 @@
                      </div>
                      <div class="btn-group-vertical">
                       <small class="ml-5 mb-2">{{parseTime(post.createdAt)}}</small>
-                      <button class="btn btn-danger btn-sm" *ngIf="isHisPost(post)">Borrar mi comentario</button>
+                      <button class="btn btn-danger btn-sm" *ngIf="isHisPost(post)" (click)="deletePost(post)">Borrar mi comentario</button>
                      </div>
               </div>
               <div class="pt-2">
