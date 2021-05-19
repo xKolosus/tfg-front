@@ -46,9 +46,7 @@ export class LoginComponent implements OnInit {
     this.user.password = this.loginUser.get("userPassword").value;
     this.authService.login(this.user.email, this.user.password).subscribe(
       data => {
-        this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
-
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.reloadPage();

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiPath } from 'src/environments/environment';
 import { UserVO } from '../interfaces/UserVO';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class UserService {
 
 
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private authService : AuthService) { }
 
   getUserByEmail(email : String){
     return this.http.get<UserVO>(ApiPath.url + "/users/byEmail?email=" + email );
@@ -23,11 +24,11 @@ export class UserService {
   }
 
   updateUser(userId: Number, user : UserVO){
-    return this.http.put<UserVO>(ApiPath.url + "/users/" + userId, user, { headers : { 'Authorization' : JSON.parse(window.sessionStorage.getItem("auth-user")).bearerToken}});
+    return this.http.put<UserVO>(ApiPath.url + "/users/" + userId, user, { headers : { 'Authorization' : this.authService.getUserToken()}});
   }
 
   deleteUser(userId : Number){
-    return this.http.delete<UserVO>(ApiPath.url + "/users/" + userId);
+    return this.http.delete<UserVO>(ApiPath.url + "/users/" + userId, { headers : { 'Authorization' : this.authService.getUserToken()}});
   }
 
   countPostsByUserId(userId : Number){

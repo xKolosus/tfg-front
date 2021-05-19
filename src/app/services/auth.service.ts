@@ -55,6 +55,12 @@ export class AuthService {
     return userId;
   }
 
+  getUserToken() : string {
+    let token = JSON.parse(window.sessionStorage.getItem("auth-user")).bearerToken;
+
+    return token;
+  }
+
   logout(){
     window.sessionStorage.removeItem("auth-user");
     this.router.navigate(["/"]);
